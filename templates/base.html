@@ -33,6 +33,24 @@
   </head>
   <body class="d-flex flex-column min-vh-100">
 
+    <!-- Favicon -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="{% static 'icons/apple-touch-icon.png' %}"
+    >
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="{% static 'icons/favicon-32x32.png' %}"
+    >
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="{% static 'icons/favicon-16x16.png' %}"
+    >
     
     <!-- Header -->
     <header class="fixed-top bg-white shadow-sm">
@@ -68,11 +86,14 @@
       {% block content %} {% endblock %}
     </main>
 
-    <!-- Footer -->
-    <footer class="footer-section mt-auto">
-      <div class="container text-center py-5">
-        <p class="mb-3">123 Cloudberry Lane, Dreamtown, SW33 TXO</p>
-        <div class="social-favicons mb-3">
+    
+<section class="py-5 text-center text-white" style="background-color: var(--accent-blue);">
+  <div class="container">
+    <h3 class="logo-font mb-3">Join the Cloudberry Community</h3>
+    <p class="mb-4">
+      Be the first to see new collections, behind-the-scenes making, and exclusive offers.
+    </p>
+    <div class="social-favicons mb-3">
           <a
             href="https://www.facebook.com"
             target="_blank"
@@ -90,6 +111,13 @@
             <i class="fa-brands fa-instagram"></i>
           </a>
         </div>
+  </div>
+</section>
+    <!-- Footer -->
+    <footer class="footer-section mt-auto">
+      <div class="container text-center py-5">
+        <p class="mb-3">123 Cloudberry Lane, Dreamtown, SW33 TXO</p>
+        
         <p class="small">&copy; 2025 Cloudberry Clay. All rights reserved.</p>
       </div>
     </footer>

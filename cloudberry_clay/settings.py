@@ -174,6 +174,8 @@ STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY', '')
 STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY', '')
 STRIPE_CURRENCY = 'gbp'
 
+STRIPE_WH_SECRET = os.environ.get('STRIPE_WH_SECRET', '')
+
 # Shopping Bag / Delivery Settings
 # ------------------------------
 FREE_DELIVERY_THRESHOLD = 50  # Free shipping over £50
