@@ -1,0 +1,1 @@
+web: gunicorn cloudberry_clay.wsgi:application

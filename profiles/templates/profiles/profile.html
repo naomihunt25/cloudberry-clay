@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'profiles/css/profile.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="overlay"></div>
+<div class="container mt-5 pt-5">
+    <div class="row">
+        <div class="col">
+            <h2 class="logo-font mb-4 text-center text-accent-blue">My Profile</h2>
+            <hr class="mb-5" style="border-color: var(--accent-pink);">
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Profile Form -->
+        <div class="col-12 col-lg-6 mb-5">
+            <h4 class="text-accent-pink mb-3">Default Delivery Information</h4>
+            <form method="POST" id="profile-update-form" class="shadow-sm p-4 rounded bg-white">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <div class="text-right mt-4">
+                    <button class="btn rounded-pill px-4 py-2 text-white"
+                            style="background-color: var(--accent-blue); border: none;">
+                        <i class="fas fa-save mr-2"></i> Update Information
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Order History -->
+        <div class="col-12 col-lg-6">
+            <h4 class="text-accent-pink mb-3">Order History</h4>
+            <div class="table-responsive shadow-sm rounded bg-white p-3">
+                <table class="table table-sm text-center mb-0">
+                    <thead class="bg-light">
+                        <tr>
+                            <th>Order Number</th>
+                            <th>Date</th>
+                            <th>Total</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for order in orders %}
+                        <tr>
+                            <td>
+                                <a href="{% url 'checkout:checkout_success' order.order_number %}"
+                                   title="View order details">
+                                    {{ order.order_number }}
+                                </a>
+                            </td>
+                            <td>{{ order.date|date:"M d, Y" }}</td>
+                            <td>£{{ order.grand_total|floatformat:2 }}</td>
+                            <td>
+                                <a href="{% url 'checkout:checkout_success' order.order_number %}"
+                                   class="btn btn-outline-secondary btn-sm rounded-pill px-3">
+                                    View
+                                </a>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="4" class="text-muted">You haven’t placed any orders yet.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

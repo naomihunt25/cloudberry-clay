@@ -1,0 +1,66 @@
+:root {
+  --accent-pink: #f7a8cf;
+  --accent-blue: #7dbde8;
+}
+
+body {
+  background-color: #fdfbfe;
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+}
+
+.text-accent-blue {
+  color: var(--accent-blue);
+}
+
+.text-accent-pink {
+  color: var(--accent-pink);
+}
+
+.btn-accent-blue {
+  background-color: var(--accent-blue);
+  color: #fff !important;
+  border: none;
+}
+
+.btn-accent-pink {
+  background-color: var(--accent-pink);
+  color: #fff !important;
+  border: none;
+}
+
+.btn-accent-blue:hover,
+.btn-accent-pink:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  transition: all 0.2s ease;
+}
+
+input, select, textarea {
+  border-radius: 50px !important;
+  padding: 10px 16px !important;
+  border: 1px solid #ddd;
+  width: 100%;
+}
+
+.card {
+  border-radius: 1.5rem;
+  background-color: #fff;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.logo-font {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.small {
+  font-size: 0.9rem;
+}

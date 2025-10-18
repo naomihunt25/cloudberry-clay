@@ -94,20 +94,19 @@
       </div>
 
       <div class="d-flex justify-content-between mt-4">
-        <a href="{% url 'products:products' %}" 
-           class="btn rounded-pill px-4 py-2 text-white"
-           style="background-color: var(--accent-pink); border: none;">
-          <i class="fas fa-chevron-left mr-2"></i> Keep Shopping
-        </a>
-        <!-- ✅ Updated Checkout Link -->
-        <a href="{% url 'checkout' %}" 
-           class="btn rounded-pill px-4 py-2 text-white"
-           style="background-color: var(--accent-blue); border: none;">
-          Checkout <i class="fas fa-chevron-right ml-2"></i>
-        </a>
-      </div>
-    </div>
-  </div>
+  <a href="{% url 'products:products' %}" 
+     class="btn rounded-pill px-4 py-2 text-white"
+     style="background-color: var(--accent-pink); border: none;">
+    <i class="fas fa-chevron-left mr-2"></i> Keep Shopping
+  </a>
+  
+  <!-- ✅ Fixed Checkout Link -->
+  <a href="{% url 'checkout:checkout' %}" 
+     class="btn rounded-pill px-4 py-2 text-white"
+     style="background-color: var(--accent-blue); border: none;">
+    Checkout <i class="fas fa-chevron-right ml-2"></i>
+  </a>
+</div>
 
   {% else %}
   <div class="row text-center py-5">
@@ -118,9 +117,14 @@
          style="background-color: var(--accent-blue); border: none;">
         <i class="fas fa-chevron-left mr-2"></i> Keep Shopping
       </a>
+      <a href="{% url 'checkout:checkout' %}" 
+   class="btn rounded-pill px-4 py-2 text-white"
+   style="background-color: var(--accent-blue); border: none;">
+  Checkout <i class="fas fa-chevron-right ml-2"></i>
+</a>
     </div>
   </div>
-  {% endif %}
+{% endif %}
 </div>
 {% endblock %}
 

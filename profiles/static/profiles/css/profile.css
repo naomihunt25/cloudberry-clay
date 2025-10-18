@@ -1,0 +1,18 @@
+text-accent-blue {
+    color: var(--accent-blue);
+}
+
+.text-accent-pink {
+    color: var(--accent-pink);
+}
+
+#profile-update-form input,
+#profile-update-form select {
+    border-radius: 0.5rem;
+}
+
+#profile-update-form button:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+    transition: all 0.2s ease-in-out;
+}

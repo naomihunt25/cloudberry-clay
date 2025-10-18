@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'products/css/products.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5 pt-5">
+  <div class="row">
+    <div class="col text-center">
+      <h2 class="logo-font text-accent-blue mb-3">Add a Product</h2>
+      <hr class="w-50 mx-auto" style="border-color: var(--accent-pink);">
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <form method="POST" action="{% url 'products:add_product' %}" enctype="multipart/form-data" class="p-4 shadow-sm rounded bg-white">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <div class="text-right mt-4">
+          <a href="{% url 'products:products' %}" class="btn rounded-pill text-white px-4 py-2 mr-2"
+             style="background-color: var(--accent-pink); border: none;">
+            Cancel
+          </a>
+          <button type="submit" class="btn rounded-pill text-white px-4 py-2"
+                  style="background-color: var(--accent-blue); border: none;">
+            Add Product
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

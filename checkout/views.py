@@ -57,6 +57,11 @@ def checkout(request):
         order_form = OrderForm(form_data)
         if order_form.is_valid():
             order = order_form.save(commit=False)
+
+            # ✅ Link the order to the logged-in user if available
+            if request.user.is_authenticated:
+                order.user = request.user
+
             pid = request.POST.get('client_secret').split('_secret')[0]
             order.stripe_pid = pid
             order.original_bag = json.dumps(bag)
@@ -85,7 +90,7 @@ def checkout(request):
                         "Please contact us for help!"
                     ))
                     order.delete()
-                    return redirect(reverse('view_bag'))
+                    return redirect(reverse('bag:view_bag'))
 
             request.session['save_info'] = 'save-info' in request.POST
             return redirect(reverse('checkout_success', args=[order.order_number]))
@@ -95,7 +100,7 @@ def checkout(request):
         bag = request.session.get('bag', {})
         if not bag:
             messages.error(request, "Your bag is empty — add something before checking out.")
-            return redirect(reverse('products'))
+            return redirect(reverse('products:products'))
 
         current_bag = bag_contents(request)
         total = current_bag['grand_total']
@@ -135,6 +140,7 @@ def checkout_success(request, order_number):
         f"A confirmation email will be sent to {order.email}."
     )
 
+    # ✅ Clear the shopping bag
     if 'bag' in request.session:
         del request.session['bag']
 

@@ -1,1 +1,21 @@
-{% extends "allauth/layouts/entrance.html" %}
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'account/css/account.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="overlay"></div>
+
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+  <div class="card shadow-sm border-0 rounded-4 p-4 w-100" style="max-width: 480px;">
+    <div class="text-center mb-4">
+      <h2 class="logo-font text-accent-blue">{% block head_title %}{% endblock %}</h2>
+      {% block subtitle %}{% endblock %}
+    </div>
+
+    {% block inner_content %}{% endblock %}
+  </div>
+</div>
+{% endblock %}
