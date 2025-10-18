@@ -1,0 +1,102 @@
+{% load static %}
+
+<nav class="navbar navbar-light bg-white d-lg-none shadow-sm">
+  <div class="container d-flex justify-content-between align-items-center">
+
+    <!-- Logo -->
+    <a class="navbar-brand" href="{% url 'home' %}">
+      <img src="{% static 'images/cloudberry_clay_logo.webp' %}" alt="Cloudberry Clay Logo" class="logo-img">
+    </a>
+
+    <!-- Hamburger -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mobileNav"
+            aria-controls="mobileNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+  </div>
+
+  <!-- Collapsed mobile nav -->
+  <div class="collapse" id="mobileNav">
+    <ul class="navbar-nav p-3">
+
+      <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+
+      <!-- Products Dropdown -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="mobileProductsDropdown"
+           role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Products
+        </a>
+        <div class="dropdown-menu" aria-labelledby="mobileproductsDropdown">
+          <a class="dropdown-item" href="{% url 'products:products' %}?category=jewellery_holders">Jewellery Holders</a>
+          <a class="dropdown-item" href="{% url 'products:products' %}?category=homeware">Homeware</a>
+          <a class="dropdown-item" href="{% url 'products:products' %}?category=dining">Dining</a>
+          <a href="{% url 'products:products' %}?category=jewellery,holders,homeware,dining" class="dropdown-item">All Products</a>
+        </div>
+      </li>
+
+      <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+
+      <!-- Search -->
+      <!-- Mobile Search Dropdown -->
+<div class="dropdown">
+  <a class="nav-link p-0 text-dark" href="#" id="mobile-search" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <i class="fas fa-search fa-lg"></i>
+  </a>
+  <div class="dropdown-menu p-3 w-100 shadow-sm" aria-labelledby="mobile-search">
+    <form class="form" method="GET" action="{% url 'products:products' %}">
+      <div class="input-group">
+        <input
+          class="form-control"
+          type="search"
+          name="q"
+          placeholder="Search products..."
+          value="{{ search_term|default:'' }}"
+        >
+        <div class="input-group-append">
+          <button class="btn btn-accent-blue" type="submit">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+      <!-- User options -->
+      <li class="nav-item mt-2">
+        <div class="dropdown">
+          <a class="nav-link p-0 text-dark" href="#" id="mobileUserDropdown" data-toggle="dropdown"
+             aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-user fa-lg"></i> Account
+          </a>
+          <div class="dropdown-menu" aria-labelledby="mobileUserDropdown">
+            {% if request.user.is_authenticated %}
+              {% if request.user.is_superuser %}
+                <a class="dropdown-item" href="#">Product Management</a>
+              {% endif %}
+              <a class="dropdown-item" href="#">My Profile</a>
+              <a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a>
+            {% else %}
+              <a class="dropdown-item" href="{% url 'account_signup' %}">Register</a>
+              <a class="dropdown-item" href="{% url 'account_login' %}">Login</a>
+            {% endif %}
+          </div>
+        </div>
+      </li>
+
+      <!-- Cart -->
+      <li class="nav-item mt-2">
+        <a class="nav-link {% if grand_total %}text-accent-blue font-weight-bold{% endif %}" href="{% url 'bag:view_bag' %}">
+          <i class="fas fa-shopping-bag fa-lg"></i>
+          <span class="ml-1">
+            {% if grand_total %} £{{ grand_total|floatformat:2 }} {% else %} £0.00 {% endif %}
+          </span>
+        </a>
+      </li>
+
+    </ul>
+  </div>
+</nav>

@@ -1,0 +1,126 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% block meta %}
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    {% endblock %}
+
+    <title>Cloudberry Clay {% block extra_title %}{% endblock %}</title>
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
+      rel="stylesheet"
+    />
+
+    {% block corecss %}
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+      integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+    {% endblock %} {% block extra_css %}{% endblock %}
+  </head>
+  <body class="d-flex flex-column min-vh-100">
+
+    
+    <!-- Header -->
+    <header class="fixed-top bg-white shadow-sm">
+      {% include 'includes/mobile_top_header.html' %}
+      {% include 'includes/main_nav.html' %}
+
+      <div
+        class="text-center text-white py-2"
+        style="background-color: var(--accent-pink); font-family: 'Roboto Mono'"
+      >
+        Free UK shipping on orders over £{{ free_delivery_threshold }}!
+      </div>
+    </header>
+
+    <!-- Messages -->
+    {% if messages %}
+  <div class="message-container">
+    {% for message in messages %}
+      {% if message.level == 40 %}
+        {% include 'includes/toasts/toast_error.html' %}
+      {% elif message.level == 30 %}
+        {% include 'includes/toasts/toast_warning.html' %}
+      {% elif message.level == 25 %}
+        {% include 'includes/toasts/toast_success.html' %}
+      {% else %}
+        {% include 'includes/toasts/toast_info.html' %}
+      {% endif %}
+    {% endfor %}
+  </div>
+{% endif %}
+    <!-- Main content -->
+    <main class="flex-grow-1 container content-container mt-5 pt-5">
+      {% block content %} {% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-section mt-auto">
+      <div class="container text-center py-5">
+        <p class="mb-3">123 Cloudberry Lane, Dreamtown, SW33 TXO</p>
+        <div class="social-favicons mb-3">
+          <a
+            href="https://www.facebook.com"
+            target="_blank"
+            rel="noopener"
+            aria-label="Visit our Facebook page"
+          >
+            <i class="fa-brands fa-square-facebook"></i>
+          </a>
+          <a
+            href="https://www.instagram.com"
+            target="_blank"
+            rel="noopener"
+            aria-label="Visit our Instagram page"
+          >
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+        </div>
+        <p class="small">&copy; 2025 Cloudberry Clay. All rights reserved.</p>
+      </div>
+    </footer>
+
+    {% block corejs %}
+    <!-- Font Awesome -->
+    <script
+      src="https://kit.fontawesome.com/a0ab40b5eb.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- jQuery + Bootstrap JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Stripe -->
+       <script src="https://js.stripe.com/v3/"></script>
+    {% endblock %} {% block postloadjs %}
+    <script>
+      $(document).ready(function () {
+        $(".toast").toast("show");
+      });
+    </script>
+    {% endblock %}
+  </body>
+</html>

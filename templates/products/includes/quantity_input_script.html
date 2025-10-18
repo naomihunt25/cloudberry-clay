@@ -1,0 +1,73 @@
+<script type="text/javascript">
+    // --- Cloudberry Clay Quantity Control Script ---
+
+    /**
+     * Enables or disables the + and - buttons
+     * depending on the current quantity value (1–99 range).
+     */
+    function handleEnableDisable(itemId) {
+        const currentValue = parseInt($(`#id_qty_${itemId}`).val());
+        const minusDisabled = currentValue <= 1;
+        const plusDisabled = currentValue >= 99;
+
+        $(`#decrement-qty_${itemId}`).prop('disabled', minusDisabled);
+        $(`#increment-qty_${itemId}`).prop('disabled', plusDisabled);
+    }
+
+    /**
+     * Initialize button state for all quantity inputs on page load.
+     */
+    $('.qty_input').each(function() {
+        const itemId = $(this).data('item_id');
+        handleEnableDisable(itemId);
+    });
+
+    /**
+     * Update button state when the input value changes manually.
+     */
+    $('.qty_input').on('change', function() {
+        const itemId = $(this).data('item_id');
+        handleEnableDisable(itemId);
+    });
+
+    /**
+     * Increment quantity button (+)
+     */
+    $('.increment-qty').on('click', function(e) {
+        e.preventDefault();
+        const input = $(this).closest('.input-group').find('.qty_input');
+        let currentValue = parseInt(input.val());
+
+        if (currentValue < 99) {
+            input.val(currentValue + 1);
+        }
+
+        const itemId = $(this).data('item_id');
+        handleEnableDisable(itemId);
+    });
+
+    /**
+     * Decrement quantity button (−)
+     */
+    $('.decrement-qty').on('click', function(e) {
+        e.preventDefault();
+        const input = $(this).closest('.input-group').find('.qty_input');
+        let currentValue = parseInt(input.val());
+
+        if (currentValue > 1) {
+            input.val(currentValue - 1);
+        }
+
+        const itemId = $(this).data('item_id');
+        handleEnableDisable(itemId);
+    });
+
+    /**
+     * Aesthetic feedback — optional for Cloudberry Clay
+     * Lightly animate buttons on click.
+     */
+    $('.increment-qty, .decrement-qty').on('click', function() {
+        $(this).addClass('active');
+        setTimeout(() => $(this).removeClass('active'), 150);
+    });
+</script>

@@ -1,0 +1,16 @@
+# Environment files
+env.py
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+
+# Local files
+db.sqlite3
+/media/

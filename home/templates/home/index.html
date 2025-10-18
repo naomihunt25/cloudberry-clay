@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_title %}- Home{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section class="hero-section d-flex align-items-center justify-content-center text-center">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-text-blocks">
+      <div class="text-block h1-block">Handcrafted with Love</div>
+      <a href="{% url 'products:products' %}" class="btn btn-primary shop-now-button mt-3">Shop Now</a>
+    </div>
+  </div>
+</section>
+
+<!-- Intro / About section -->
+<section class="container py-5 text-center">
+  <h2 class="logo-font mb-4 text-accent-blue">
+    Discover the Art of Handcrafted Clay
+  </h2>
+  <p class="lead mx-auto text-secondary">
+    Cloudberry Clay celebrates creativity and craftsmanship through beautiful handmade pieces for everyday living.
+    Explore our unique collections designed to bring charm and colour into your home.
+  </p>
+</section>
+
+<!-- Categories Section -->
+<section class="container py-5">
+  <h3 class="text-center logo-font mb-5 text-accent-pink">
+    Explore Our Collections
+  </h3>
+  <div class="row justify-content-center">
+
+    <!-- Category 1: Homeware -->
+    <div class="col-10 col-sm-6 col-md-4 mb-4">
+      <div class="card border-0 shadow-sm category-card h-100">
+        <img src="{{ MEDIA_URL }}products/marmalade_haze_vase.webp" class="card-img-top" alt="Homeware">
+        <div class="card-body text-center">
+          <h4 class="card-title logo-font text-accent-blue">Homeware</h4>
+          <p class="card-text text-secondary">
+            Stylish and unique clay pieces to decorate and brighten your space.
+          </p>
+          <a href="{% url 'products:products' %}?category=homeware" class="btn btn-outline-dark btn-sm">Shop Homeware</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Category 2: Jewellery Holders -->
+    <div class="col-10 col-sm-6 col-md-4 mb-4">
+      <div class="card border-0 shadow-sm category-card h-100">
+        <img src="{{ MEDIA_URL }}products/rosebud_ring_holder.webp" class="card-img-top" alt="Jewellery Holders">
+        <div class="card-body text-center">
+          <h4 class="card-title logo-font text-accent-blue">Jewellery Holders</h4>
+          <p class="card-text text-secondary">
+            Keep your treasures safe in beautifully handcrafted jewellery holders.
+          </p>
+          <a href="{% url 'products:products' %}?category=jewellery_holders" class="btn btn-outline-dark btn-sm">Shop Jewellery Holders</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Category 3: Kitchen -->
+    <div class="col-10 col-sm-6 col-md-4 mb-4">
+      <div class="card border-0 shadow-sm category-card h-100">
+        <img src="{{ MEDIA_URL }}products/aqua_dream_plate.webp" class="card-img-top" alt="Dining">
+        <div class="card-body text-center">
+          <h4 class="card-title logo-font text-accent-blue">Dining</h4>
+          <p class="card-text text-secondary">
+            Add a handmade touch to your dining table and kitchen decor.
+          </p>
+          <a href="{% url 'products:products' %}?category=dining" class="btn btn-outline-dark btn-sm">Shop Dining</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Newsletter CTA -->
+<section class="py-5 text-center text-white" style="background-color: var(--accent-blue);">
+  <div class="container">
+    <h3 class="logo-font mb-3">Join the Cloudberry Community</h3>
+    <p class="mb-4">
+      Be the first to see new collections, behind-the-scenes making, and exclusive offers.
+    </p>
+    <a href="#" class="btn btn-light btn-lg text-accent-blue">
+      Subscribe to Newsletter
+    </a>
+  </div>
+</section>
+
+{% endblock %}

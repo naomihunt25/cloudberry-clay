@@ -1,0 +1,51 @@
+<div class="toast custom-toast success-toast border-0 shadow-sm" data-autohide="true" data-delay="4000">
+
+    <!-- top accent bar -->
+    <div class="w-100" style="background-color: var(--accent-blue); height: 5px;"></div>
+
+    <div class="toast-header bg-white text-dark">
+        <strong class="mr-auto text-accent-blue logo-font">Success!</strong>
+        <button type="button" class="ml-2 mb-1 close text-dark" data-dismiss="toast" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="toast-body bg-white">
+        <p class="mb-2">{{ message }}</p>
+
+        {% if grand_total %}
+        <p class="logo-font text-accent-blue">Your Bag ({{ product_count }})</p>
+
+        {% for item in bag_items %}
+        <div class="row align-items-center mb-2">
+            <div class="col-3">
+                {% if item.product.image %}
+                    <img src="{{ item.product.image.url }}" class="img-fluid rounded" alt="{{ item.product.name }}">
+                {% else %}
+                    <img src="{{ MEDIA_URL }}noimage.png" class="img-fluid rounded" alt="{{ item.product.name }}">
+                {% endif %}
+            </div>
+            <div class="col-9">
+                <p class="my-0"><strong>{{ item.product.name }}</strong></p>
+                <p class="my-0 small text-muted">Qty: {{ item.quantity }}</p>
+            </div>
+        </div>
+        {% endfor %}
+
+        <p class="mb-1"><strong>Total:</strong> £{{ total|floatformat:2 }}</p>
+
+        {% if free_delivery_delta > 0 %}
+        <p class="small text-muted">
+            Spend <strong>£{{ free_delivery_delta|floatformat:2 }}</strong> more for free delivery!
+        </p>
+        {% endif %}
+
+        <div class="text-center mt-2">
+            <a href="{% url 'bag:view_bag' %}" class="btn btn-sm text-white rounded-pill px-3"
+               style="background-color: var(--accent-blue);">
+               View Bag
+            </a>
+        </div>
+        {% endif %}
+    </div>
+</div>

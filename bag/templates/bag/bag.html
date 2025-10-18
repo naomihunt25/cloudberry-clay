@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="overlay"></div>
+
+<div class="container-fluid mt-5 pt-5">
+  <div class="row">
+    <div class="col text-center">
+      <h2 class="logo-font text-accent-blue mb-3">Your Shopping Bag</h2>
+      <hr class="w-50 mx-auto" style="border-color: var(--accent-pink);">
+    </div>
+  </div>
+
+  {% if bag_items %}
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-10">
+      <div class="table-responsive shadow-sm rounded bg-white p-3">
+        <table class="table align-middle text-center">
+          <thead style="background-color: var(--accent-blue); color: white;">
+            <tr>
+              <th class="text-left pl-3">Product</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Subtotal</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in bag_items %}
+            <tr>
+              <td class="text-left">
+                {% if item.product.image %}
+                <img src="{{ item.product.image.url }}"
+                     alt="{{ item.product.name }}"
+                     class="img-thumbnail mr-2"
+                     style="width: 60px; height: 60px; object-fit: cover;">
+                {% endif %}
+                <strong>{{ item.product.name }}</strong>
+              </td>
+              <td>£{{ item.product.price|floatformat:2 }}</td>
+              <td>
+                <form method="POST" action="{% url 'bag:update_bag' item.item_id %}" class="update-form d-inline">
+                  {% csrf_token %}
+                  <div class="input-group input-group-sm justify-content-center" style="max-width: 120px;">
+                    <button type="button" 
+                            class="btn btn-outline-secondary decrement-qty px-2" 
+                            data-item_id="{{ item.item_id }}"
+                            id="decrement-qty_{{ item.item_id }}">
+                      <i class="fas fa-minus"></i>
+                    </button>
+                    <input type="number"
+                           name="quantity"
+                           value="{{ item.quantity }}"
+                           min="1"
+                           max="99"
+                           class="form-control form-control-sm text-center qty_input"
+                           data-item_id="{{ item.item_id }}"
+                           id="id_qty_{{ item.item_id }}"
+                           style="width: 50px;">
+                    <button type="button" 
+                            class="btn btn-outline-secondary increment-qty px-2" 
+                            data-item_id="{{ item.item_id }}"
+                            id="increment-qty_{{ item.item_id }}">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+                </form>
+                <a class="update-link text-accent-blue small d-block mt-1">Update</a>
+              </td>
+              <td>£{{ item.subtotal|floatformat:2 }}</td>
+              <td>
+                <form method="POST" action="{% url 'bag:remove_from_bag' item.item_id %}">
+                  {% csrf_token %}
+                  <button type="submit"
+                          class="btn btn-outline-danger btn-sm rounded-pill px-3">
+                    Remove
+                  </button>
+                </form>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="text-right mt-4">
+        <h4 class="text-accent-blue">Total: £{{ grand_total|floatformat:2 }}</h4>
+        {% if free_delivery_delta > 0 %}
+        <p class="text-muted small">
+          Spend £{{ free_delivery_delta|floatformat:2 }} more for free UK shipping!
+        </p>
+        {% endif %}
+      </div>
+
+      <div class="d-flex justify-content-between mt-4">
+        <a href="{% url 'products:products' %}" 
+           class="btn rounded-pill px-4 py-2 text-white"
+           style="background-color: var(--accent-pink); border: none;">
+          <i class="fas fa-chevron-left mr-2"></i> Keep Shopping
+        </a>
+        <!-- ✅ Updated Checkout Link -->
+        <a href="{% url 'checkout' %}" 
+           class="btn rounded-pill px-4 py-2 text-white"
+           style="background-color: var(--accent-blue); border: none;">
+          Checkout <i class="fas fa-chevron-right ml-2"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  {% else %}
+  <div class="row text-center py-5">
+    <div class="col">
+      <h4 class="text-muted mb-4">Your shopping bag is empty.</h4>
+      <a href="{% url 'products:products' %}" 
+         class="btn rounded-pill px-4 py-2 text-white"
+         style="background-color: var(--accent-blue); border: none;">
+        <i class="fas fa-chevron-left mr-2"></i> Keep Shopping
+      </a>
+    </div>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+{% include 'products/includes/quantity_input_script.html' %}
+<script>
+  // Allow quick update of bag quantity
+  document.querySelectorAll('.update-link').forEach(link => {
+    link.addEventListener('click', () => {
+      const form = link.previousElementSibling;
+      form.submit();
+    });
+  });
+</script>
+{% endblock %}

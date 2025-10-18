@@ -1,0 +1,74 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white py-3 d-none d-lg-flex shadow-sm">
+  <div class="container">
+
+    <!-- Logo -->
+    <a class="navbar-brand" href="{% url 'home' %}">
+      <img src="{% static 'images/cloudberry_clay_logo.webp' %}" alt="Cloudberry Clay Logo" class="logo-img">
+    </a>
+
+    <!-- Navbar links -->
+    <ul class="navbar-nav mx-auto">
+      <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+
+      <!-- Products Dropdown -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="productsDropdown"
+           role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Products
+        </a>
+        <div class="dropdown-menu" aria-labelledby="productsDropdown">
+          <a class="dropdown-item" href="{% url 'products:products' %}?category=jewellery_holders">Jewellery Holders</a>
+          <a class="dropdown-item" href="{% url 'products:products' %}?category=homeware">Homeware</a>
+          <a class="dropdown-item" href="{% url 'products:products' %}?category=dining">Dining</a>
+          <a href="{% url 'products:products' %}?category=jewellery,holders,homeware,dining" class="dropdown-item">All Products</a>
+        </div>
+      </li>
+
+      <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+    </ul>
+
+    <!-- Right-side: Search + User + Cart -->
+    <ul class="navbar-nav ml-auto align-items-center">
+      <!-- Search -->
+      <li class="nav-item mr-3">
+      <form method="GET" action="{% url 'products:products' %}">
+    <input type="search" name="q" placeholder="Search products..." value="{{ search_term|default:'' }}">
+    <button type="submit">Search</button>
+</form>
+      </li>
+
+      <!-- User Dropdown -->
+      <li class="nav-item dropdown">
+        <a class="nav-link" href="#" id="userOptions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-user fa-lg"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right border-0 shadow" aria-labelledby="userOptions">
+          {% if request.user.is_authenticated %}
+            {% if request.user.is_superuser %}
+              <a href="#" class="dropdown-item">Product Management</a>
+            {% endif %}
+            <a href="#" class="dropdown-item">My Profile</a>
+            <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
+          {% else %}
+            <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
+            <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
+          {% endif %}
+        </div>
+      </li>
+
+      <!-- Shopping Bag -->
+      <li class="nav-item">
+        <a class="nav-link {% if grand_total %}text-accent-blue font-weight-bold{% endif %}" href="{% url 'bag:view_bag' %}">
+          <i class="fas fa-shopping-bag fa-lg"></i>
+          <span class="ml-1">
+            {% if grand_total %} £{{ grand_total|floatformat:2 }} {% else %} £0.00 {% endif %}
+          </span>
+        </a>
+      </li>
+    </ul>
+
+  </div>
+</nav>

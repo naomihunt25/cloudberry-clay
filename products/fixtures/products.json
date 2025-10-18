@@ -1,0 +1,242 @@
+[
+  {
+    "pk": 1,
+    "model": "products.product",
+    "fields": {
+      "name": "Morning Mist Vase",
+      "description": "Start your day with a touch of serenity! This sky blue ceramic vase blends glazed and matte clay for a dreamy, calming effect that makes every bloom look magical.",
+      "price": 54.99,
+      "category": 1,
+      "image": "products/morning_mist_vase.webp",
+      "rating": 4.6
+    }
+  },
+  {
+    "pk": 2,
+    "model": "products.product",
+    "fields": {
+      "name": "Marmalade Haze Vase",
+      "description": "Brighten any room with this cheerful orange vase. The glossy and matte ceramic glaze gives it a playful, sun-kissed glow that's impossible to ignore.",
+      "price": 54.99,
+      "category": 1,
+      "image": "products/marmalade_haze_vase.webp",
+      "rating": 4.7
+    }
+  },
+  {
+    "pk": 3,
+    "model": "products.product",
+    "fields": {
+      "name": "Willow Dew Vase",
+      "description": "Mint green geometric vase with elegant handles, perfect for bringing a modern touch to any space.",
+      "price": 69.99,
+      "category": 1,
+      "image": "products/willow_dew_vase.webp",
+      "rating": 4.8
+    }
+  },
+  {
+    "pk": 4,
+    "model": "products.product",
+    "fields": {
+      "name": "Blush Bloom Vase",
+      "description": "Baby pink lantern-style ceramic vase that adds a soft and charming accent to your home décor.",
+      "price": 59.99,
+      "category": 1,
+      "image": "products/blush_bloom_vase.webp",
+      "rating": 4.5
+    }
+  },
+  {
+    "pk": 5,
+    "model": "products.product",
+    "fields": {
+      "name": "Blush Petal Bowl",
+      "description": "Pastel pink and blue gradient bowl, perfect for stylish dining or decorative display.",
+      "price": 12.99,
+      "category": 3,
+      "image": "products/blush_petal_bowl.webp",
+      "rating": 4.2
+    }
+  },
+  {
+    "pk": 6,
+    "model": "products.product",
+    "fields": {
+      "name": "Jade Meadow Bowl",
+      "description": "Reactive jade teal ceramic bowl with stunning glazing, ideal for serving or display.",
+      "price": 15.99,
+      "category": 3,
+      "image": "products/jade_meadow_bowl.webp",
+      "rating": 4.4
+    }
+  },
+  {
+    "pk": 7,
+    "model": "products.product",
+    "fields": {
+      "name": "Peach Sunburn Bowl",
+      "description": "Ceramic bowl with soft orange and pink gradient, perfect for adding warmth to your table.",
+      "price": 12.99,
+      "category": 3,
+      "image": "products/peach_sunburn_bowl.webp",
+      "rating": 4.3
+    }
+  },
+  {
+    "pk": 8,
+    "model": "products.product",
+    "fields": {
+      "name": "Sky Whisper Bowl",
+      "description": "Sky blue bowl with hand-painted gold accents, a delicate and elegant addition to your tableware.",
+      "price": 15.99,
+      "category": 3,
+      "image": "products/skywhisper_bowl.webp",
+      "rating": 4.6
+    }
+  },
+  {
+    "pk": 9,
+    "model": "products.product",
+    "fields": {
+      "name": "Sunset Glow Plate",
+      "description": "Pastel orange swirl design plate, perfect for adding a pop of color to your dining table.",
+      "price": 14.99,
+      "category": 3,
+      "image": "products/sunset_glow_plate.webp",
+      "rating": 4.5
+    }
+  },
+  {
+    "pk": 10,
+    "model": "products.product",
+    "fields": {
+      "name": "Rosewater Kiss Plate",
+      "description": "Pink gradient ceramic plate with soft, elegant hues for a charming table setting.",
+      "price": 14.99,
+      "category": 3,
+      "image": "products/rosewater_kiss_plate.webp",
+      "rating": 4.4
+    }
+  },
+  {
+    "pk": 11,
+    "model": "products.product",
+    "fields": {
+      "name": "Peony Glow Plate",
+      "description": "White and pink ocean-inspired ceramic plate, bringing artistic elegance to your dining.",
+      "price": 15.99,
+      "category": 3,
+      "image": "products/peony_glow_plate.webp",
+      "rating": 4.7
+    }
+  },
+  {
+    "pk": 12,
+    "model": "products.product",
+    "fields": {
+      "name": "Aqua Dream Plate",
+      "description": "Blue and green gradient ceramic plate, perfect for a fresh, calming table aesthetic.",
+      "price": 15.99,
+      "category": 3,
+      "image": "products/aqua_dream_plate.webp",
+      "rating": 4.6
+    }
+  },
+  {
+    "pk": 13,
+    "model": "products.product",
+    "fields": {
+      "name": "Apricot Sunrise Coasters",
+      "description": "Set of 4 bright orange ceramic coasters, ideal for protecting surfaces with a cheerful touch.",
+      "price": 14.99,
+      "category": 3,
+      "image": "products/apricot_sunrise_coasters.webp",
+      "rating": 4.5
+    }
+  },
+  {
+    "pk": 14,
+    "model": "products.product",
+    "fields": {
+      "name": "Cotton Candy Coasters",
+      "description": "Set of 4 pink-splattered ceramic coasters, fun and playful for any table.",
+      "price": 15.99,
+      "category": 3,
+      "image": "products/cotton_candy_coasters.webp",
+      "rating": 4.6
+    }
+  },
+  {
+    "pk": 15,
+    "model": "products.product",
+    "fields": {
+      "name": "Sage Whisper Coasters",
+      "description": "Set of 4 ceramic coasters with green brushstroke design, stylish and functional.",
+      "price": 15.99,
+      "category": 3,
+      "image": "products/sage_whisper_coasters.webp",
+      "rating": 4.3
+    }
+  },
+  {
+    "pk": 16,
+    "model": "products.product",
+    "fields": {
+      "name": "Sea Breeze Coasters",
+      "description": "Set of 4 blue wave ceramic coasters, bringing coastal charm to your table.",
+      "price": 15.99,
+      "category": 3,
+      "image": "products/seabreeze_coasters.webp",
+      "rating": 4.4
+    }
+  },
+  {
+    "pk": 17,
+    "model": "products.product",
+    "fields": {
+      "name": "Sky Nest Necklace Holder",
+      "description": "Baby blue ceramic necklace holder, delicate and practical for keeping jewelry organized.",
+      "price": 12.99,
+      "category": 2,
+      "image": "products/sky_nest_necklace_holder.webp",
+      "rating": 4.6
+    }
+  },
+  {
+    "pk": 18,
+    "model": "products.product",
+    "fields": {
+      "name": "Rosebud Ring Holder",
+      "description": "Matte pink ceramic ring holder, cute and elegant for all your rings.",
+      "price": 9.99,
+      "category": 2,
+      "image": "products/rosebud_ring_holder.webp",
+      "rating": 4.5
+    }
+  },
+  {
+    "pk": 19,
+    "model": "products.product",
+    "fields": {
+      "name": "Mint Cloud Earring Holder",
+      "description": "Mint green ceramic earring holder, practical and stylish for everyday use.",
+      "price": 12.99,
+      "category": 2,
+      "image": "products/mint_cloud_earring_holder.webp",
+      "rating": 4.7
+    }
+  },
+  {
+    "pk": 20,
+    "model": "products.product",
+    "fields": {
+      "name": "Coral Cove Earring Holder",
+      "description": "Bright, sunny, and delightful! This ceramic orange earring holder adds a splash of color and fun to your jewelry display.",
+      "price": 14.99,
+      "category": 2,
+      "image": "products/coral_cove_earring_holder.webp",
+      "rating": 4.8
+    }
+  }
+]
