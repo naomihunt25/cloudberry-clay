@@ -2,49 +2,37 @@ from django.contrib import admin
 from .models import Order, OrderLineItem
 
 
-class OrderLineItemInline(admin.TabularInline):
-    """
-    Lets us see and edit line items right inside the order page.
-    """
+class OrderLineItemAdminInline(admin.TabularInline):
+    """Display line items within the Order admin view"""
     model = OrderLineItem
-    readonly_fields = ('lineitem_total',)  # show total but don’t let it be edited
+    readonly_fields = ('lineitem_total',)
+
+    extra = 0  # Prevents Django from showing extra blank forms unnecessarily
 
 
 class OrderAdmin(admin.ModelAdmin):
-    """
-    Custom admin view for Cloudberry Clay orders.
-    """
-    inlines = (OrderLineItemInline,)
+    """Admin configuration for customer orders"""
+    inlines = (OrderLineItemAdminInline,)
 
-    # Fields that shouldn’t be changed manually
     readonly_fields = (
-        'order_number',
-        'date',
-        'delivery_cost',
-        'order_total',
-        'grand_total',
+        'order_number', 'date', 'delivery_cost',
+        'order_total', 'grand_total', 'original_bag', 'stripe_pid',
     )
 
-    # Order in which fields appear in the admin form
     fields = (
-        'order_number', 'date', 'full_name', 'email',
-        'phone_number', 'country', 'postcode', 'town_or_city',
-        'street_address1', 'street_address2', 'county',
-        'delivery_cost', 'order_total', 'grand_total',
+        'order_number', 'date', 'full_name', 'email', 'phone_number',
+        'country', 'postcode', 'town_or_city', 'street_address1',
+        'street_address2', 'county', 'delivery_cost',
+        'order_total', 'grand_total', 'original_bag', 'stripe_pid',
     )
 
-    # What shows up in the list view in the admin
     list_display = (
-        'order_number',
-        'date',
-        'full_name',
-        'order_total',
-        'delivery_cost',
-        'grand_total',
+        'order_number', 'date', 'full_name',
+        'order_total', 'delivery_cost', 'grand_total',
     )
 
-    ordering = ('-date',)  # newest orders first
+    ordering = ('-date',)
+    search_fields = ('order_number', 'full_name', 'email')
 
 
-# finally, register it so it appears in the admin site
 admin.site.register(Order, OrderAdmin)
